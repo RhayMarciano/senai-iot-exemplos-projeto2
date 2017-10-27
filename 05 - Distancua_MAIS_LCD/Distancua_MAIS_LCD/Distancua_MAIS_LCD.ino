@@ -1,5 +1,5 @@
 // Inclusão da biblioteca do sensor
-// Essa biblioteca não vem por padrão com o arduino e 
+// Essa biblioteca não vem por padrão com o arduino e
 // precisa ser instalada pelo gerenciador de bibliotecas
 #include <Ultrasonic.h>
 #include <LiquidCrystal.h>
@@ -16,18 +16,22 @@ void setup() {
   Serial.begin(9600);
 
   lcd.begin(16, 2);
-  lcd.print("Distance in CM: ");
+  lcd.print("MENSAGEM: ");
 }
 
 void loop() {
   // Lê o valor do sensor
   int distancia = ultrasonic.distanceRead();
-
+  if (Serial.available() > 0) {
+    String mensagem = Serial.readString();
+    Serial.print("Mensagem recebida: ");
+    Serial.print(mensagem);
+    Serial.println();
   // Escreve o valor da distância no painel Serial
   lcd.setCursor(0, 1);
   lcd.print("                ");
   lcd.setCursor(0, 1);
-  lcd.print(distancia);
+  lcd.print(mensagem);
   delay(1000);
 }
-
+}

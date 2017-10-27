@@ -24,7 +24,7 @@ void loop() {
   
   delay(1000);
 
-  if(distancia < 100){
+  if(distancia < 20){
     digitalWrite(portaLed, HIGH);
   }else{
     digitalWrite(portaLed, LOW);  
